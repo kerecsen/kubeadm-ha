@@ -44,7 +44,7 @@ export K8SHA_KEEPALIVED_AUTH=412f7dc3bfed32194d1600c483e10ad1d
 export K8SHA_CALICO_REACHABLE_IP=192.168.20.1
 
 # kubernetes CIDR pod subnet, if CIDR pod subnet is "172.168.0.0/16" please set to "172.168.0.0"
-export K8SHA_CIDR=172.168.0.0
+export K8SHA_CIDR=172.31.0.0
 
 ##############################
 # please do not modify anything below
@@ -57,9 +57,9 @@ mkdir -p config/$K8SHA_HOST3/{keepalived,nginx-lb}
 # create all kubeadm-config.yaml files
 
 cat << EOF > config/$K8SHA_HOST1/kubeadm-config.yaml
-apiVersion: kubeadm.k8s.io/v1alpha2
-kind: MasterConfiguration
-kubernetesVersion: v1.11.1
+apiVersion: kubeadm.k8s.io/v1alpha3
+kind: ClusterConfiguration
+kubernetesVersion: v1.12.2
 apiServerCertSANs:
 - ${K8SHA_HOST1}
 - ${K8SHA_HOST2}
@@ -89,9 +89,9 @@ networking:
 EOF
 
 cat << EOF > config/$K8SHA_HOST2/kubeadm-config.yaml
-apiVersion: kubeadm.k8s.io/v1alpha2
-kind: MasterConfiguration
-kubernetesVersion: v1.11.1
+apiVersion: kubeadm.k8s.io/v1alpha3
+kind: ClusterConfiguration
+kubernetesVersion: v1.12.2
 apiServerCertSANs:
 - ${K8SHA_HOST1}
 - ${K8SHA_HOST2}
@@ -122,9 +122,9 @@ networking:
 EOF
 
 cat << EOF > config/$K8SHA_HOST3/kubeadm-config.yaml
-apiVersion: kubeadm.k8s.io/v1alpha2
-kind: MasterConfiguration
-kubernetesVersion: v1.11.1
+apiVersion: kubeadm.k8s.io/v1alpha3
+kind: ClusterConfiguration
+kubernetesVersion: v1.12.2
 apiServerCertSANs:
 - ${K8SHA_HOST1}
 - ${K8SHA_HOST2}
